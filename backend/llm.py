@@ -1,30 +1,40 @@
 import os
 import requests
-from dotenv import load_dotenv
 
-load_dotenv()
 
-url = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+MODEL = "llama-3.3-70b-versatile"
+
 
 def call_llm(prompt: str) -> str:
-    payload = {
-        "model": "llama-3.3-70b-versatile",
-        "messages": [
-            {"role": "system", "content": "You are an expert AI CV optimizer and career coach."},
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.3
-    }
+    if not GROQ_API_KEY:
+        return "Error: GROQ_API_KEY is missing. Add it in Streamlit Cloud secrets."
 
     headers = {
-        "Authorization": f"Bearer {os.getenv('GROQ_API_KEY')}",
-        "Content-Type": "application/json"
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json",
     }
 
-    response = requests.post(url, json=payload, headers=headers)
+    payload = {
+        "model": MODEL,
+        "messages": [
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.3,
+    }
 
-    return response.json()["choices"][0]["message"]["content"]
+    response = requests.post(GROQ_URL, headers=headers, json=payload)
 
+    try:
+        data = response.json()
+    except Exception:
+        return f"Groq API returned non-JSON response: {response.text}"
 
+    if response.status_code != 200:
+        return f"Groq API error {response.status_code}: {data}"
 
+    if "choices" not in data:
+        return f"Unexpected Groq response: {data}"
 
+    return data["choices"][0]["message"]["content"]
