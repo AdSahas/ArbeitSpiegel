@@ -109,7 +109,7 @@ Structured AI Outputs
 ```text
 ArbeitSpiegel/
 │
-├── Backend/
+├── backend/
 │   ├── llm.py
 │   ├── main.py
 │   └── prompts.py
