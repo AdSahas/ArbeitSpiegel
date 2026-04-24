@@ -135,6 +135,7 @@ Experience with Tableau or Power BI
 Strong communication and stakeholder management skills
 Experience in fintech or financial services is a plus
 Bachelor's degree in a quantitative field
+
 ---
 
 ## CV Analysis and Rewritten CV
