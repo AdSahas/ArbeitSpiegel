@@ -1,196 +1,204 @@
-# AI Job Application Copilot (LLM-powered)
+🧠 ArbeitSpiegel — AI Job Application Copilot
 
-An AI-powered web application that helps users optimize job applications using LLMs.  
-It generates improved CV bullet points, tailored cover letters, and skill gap analysis based on a given job description.
+An AI-powered job application assistant that analyzes CVs against job descriptions, rewrites resumes, generates tailored cover letters, and performs realistic recruiter-style skill gap analysis using LLMs.
 
-Built with **FastAPI + Streamlit + Llama 3.3-70b-versatile (via Groq API)**.
+Built with:
 
----
+* FastAPI
+* Streamlit
+* Groq API
+* Llama 3.3
 
-## 🚀 Features
+⸻
 
-- 📄 CV optimization tailored to job descriptions  
-- ✉️ Automated cover letter generation  
-- 🔍 Skill gap analysis (missing skills + improvement suggestions)  
-- ⚡ Fast LLM inference using Llama 3.1 via Groq API  
-- 🖥️ Simple Streamlit UI for interactive use  
-- 🔗 REST API backend using FastAPI  
+🚀 Features
 
----
+📄 CV Matching & Optimization
 
-## 🧠 Tech Stack
+* Compares CVs against job descriptions
+* Generates recruiter-style compatibility ratings
+* Rewrites CVs for stronger alignment
+* Improves clarity, structure, and ATS compatibility
 
-- Python  
-- FastAPI (backend API layer)  
-- Streamlit (frontend UI)  
-- Groq API (LLM inference)  
-- Llama 3.1 (language model)  
-- Pydantic (input validation)  
-- Requests (API communication)  
+✉️ Tailored Cover Letter Generation
 
----
+* Generates role-specific cover letters
+* Aligns experience with job requirements
+* Maintains realistic and professional tone
 
-## 🏗️ Architecture
+🔍 Skill Gap Analysis
 
-User Input (CV + Job Description)  
-→ FastAPI Backend  
-→ Prompt Engineering Layer  
-→ Llama 3.1 via Groq API  
-→ Structured AI Outputs  
-→ Streamlit UI Display  
+* Identifies realistic missing qualifications
+* Recognizes transferable experience
+* Provides actionable improvement suggestions
 
----
+🧠 Semantic Matching
 
-## 📦 Project Structure
-ArbeitSpiegel:
-    - Backend
-        - llm.py
-        - main.py
-        - prompts.py
-    - frontend
-     - app.py
+The system uses semantic reasoning instead of simple keyword matching.
 
-# How to use:
+Examples:
 
-### 1. Install dependencies
-```bash
+* “OpenAI API” → practical LLM experience
+* “ChromaDB” → vector database exposure
+* “semantic retrieval” → RAG/retrieval systems
+* Hospitality experience → customer-facing support experience
+
+⚡ Fast Inference
+
+Powered by Groq-hosted Llama 3.3 models for low-latency responses.
+
+⸻
+
+💡 Why This Project?
+
+Most applicants spend hours manually rewriting resumes for each job application without understanding:
+
+* why their CV does or does not match a role
+* which skills are actually missing
+* how recruiters interpret transferable experience
+
+Many existing resume tools rely heavily on keyword matching.
+
+ArbeitSpiegel was built to behave more like a recruiter-style assistant by:
+
+* recognizing semantic equivalents
+* identifying transferable experience
+* avoiding fabricated achievements
+* generating more realistic and believable CV rewrites
+
+The goal is not just ATS optimization — it is producing applications that feel authentic, targeted, and recruiter-friendly.
+
+⸻
+
+🧠 Design Principles
+
+* Semantic matching instead of pure keyword matching
+* Evidence-based rewriting
+* Recruiter-style evaluation logic
+* Recognition of transferable experience
+* Human-readable and ATS-friendly formatting
+* Realistic, non-exaggerated outputs
+
+⸻
+
+⚙️ Tech Stack
+
+* Python
+* FastAPI
+* Streamlit
+* Groq API
+* Llama 3.3
+* Pydantic
+* Requests
+
+⸻
+
+🏗️ Architecture
+
+User Input (CV + Job Description)
+        ↓
+Streamlit Frontend
+        ↓
+FastAPI Backend
+        ↓
+Prompt Engineering Layer
+        ↓
+Groq API (Llama 3.3)
+        ↓
+Structured AI Outputs
+
+⸻
+
+📦 Project Structure
+
+ArbeitSpiegel/
+│
+├── Backend/
+│   ├── llm.py
+│   ├── main.py
+│   └── prompts.py
+│
+└── frontend/
+    └── app.py
+
+⸻
+
+🧪 Example CV Improvement
+
+Original Bullet
+
+Answered customer inquiries and redirected calls
+
+Improved Bullet
+
+Provided front-line customer support and coordinated guest inquiries in a fast-paced hospitality environment
+
+⸻
+
+⚙️ How to Run
+
+1️⃣ Install Dependencies
+
 pip install -r requirements.txt
-```
 
-### 2. Add a GROQ API key
-Create a .env file with the line:
-GROQ_API_KEY={add your API key here_}
+⸻
 
-### 3. Run the backend
-```bash
+2️⃣ Add a Groq API Key
+
+Create a .env file:
+
+GROQ_API_KEY=your_api_key_here
+
+⸻
+
+3️⃣ Run the Backend
+
 uvicorn main:app --reload
-```
 
-### 4. Run the frontend
-```bash
+⸻
+
+4️⃣ Run the Frontend
+
 streamlit run app.py
-```
 
-# 💡 Why This Project?
+⸻
 
-Applying for jobs today is often frustrating and repetitive. Many applicants struggle with:
+📌 Current Capabilities
 
-* Tailoring resumes for every application
-* Understanding why their CV does not match a role
-* Identifying missing technical skills
-* Writing personalized cover letters repeatedly
-* Getting past ATS (Applicant Tracking Systems)
+✅ CV analysis and scoring
 
-# Demo Output:
+✅ Recruiter-style CV rewriting
 
-## Sample CV:
-CURRICULUM VITAE
-Jordan Mills
-jordan.mills@email.com | LinkedIn: linkedin.com/in/jordanmills | New York, NY
-Summary
-Data analyst with 5 years of experience turning large, complex datasets into clear business insights. Proven track record in financial services, with deep expertise in SQL, Python, and BI tools. Comfortable presenting to both technical and non-technical audiences.
-Experience
-Data Analyst → Senior Data Analyst — Meridian Financial, New York, NY (2020–Present)
+✅ Cover letter generation
 
-Built and maintained 15+ Tableau dashboards used daily by C-suite stakeholders
-Wrote optimized SQL queries against multi-billion row datasets, reducing report runtime by 40%
-Led a 6-month A/B testing program on customer onboarding flows, improving conversion by 18%
-Mentored 2 junior analysts and established a team SQL style guide
-Collaborated with data engineering to redesign 3 ETL pipelines in dbt
+✅ Skill gap analysis
 
-Data Analyst — BrightMetrics, Jersey City, NJ (2019–2020)
+✅ Semantic skill matching
 
-Supported marketing and product teams with ad hoc analysis using Python (pandas, numpy)
-Created automated weekly reports, saving ~6 hours of manual work per week
+✅ Transferable experience recognition
 
-Skills
-SQL (PostgreSQL, BigQuery), Python (pandas, numpy, matplotlib), Tableau, Power BI, dbt, Git, Excel, A/B Testing, Stakeholder Communication
-Education
-B.S. Statistics — Rutgers University, 2019
-Certifications
+⸻
 
-Tableau Desktop Specialist (2022)
-Google Data Analytics Certificate (2021)
+🔮 Future Improvements
 
----
-## Sample Job Description:
-JOB DESCRIPTION
-Position: Senior Data Analyst
-Company: FinEdge Analytics
-Location: New York, NY (Hybrid)
-FinEdge Analytics is looking for a Senior Data Analyst to join our growing data team. You will work closely with business stakeholders to translate complex data into actionable insights.
-Responsibilities:
+* PDF/DOCX parsing
+* Multi-CV ranking
+* Recruiter feedback calibration
+* LinkedIn/GitHub integration
+* Exportable application packages
+* Interview question generation
+* Domain-specific optimization
 
-Design and maintain dashboards and reports using Tableau and Power BI
-Write complex SQL queries to extract and transform large datasets
-Collaborate with data engineers on pipeline improvements
-Lead A/B testing initiatives and present findings to leadership
-Mentor junior analysts on best practices
+⸻
 
-Requirements:
+🤝 Contributions
 
-4+ years of experience in data analysis
-Proficiency in SQL, Python (pandas, numpy)
-Experience with Tableau or Power BI
-Strong communication and stakeholder management skills
-Experience in fintech or financial services is a plus
-Bachelor's degree in a quantitative field
+Contributions, suggestions, and improvements are welcome.
 
----
+Feel free to fork the repository, open issues, or submit pull requests.
 
-## CV Analysis and Rewritten CV
+⸻
 
-Rating: 9/10
+📜 License
 
-Explanation: The CV strongly matches the job description, with relevant experience in data analysis, proficiency in required skills such as SQL, Python, and Tableau, and a strong track record of presenting insights to stakeholders. The candidate's experience in financial services and fintech is also a plus. The only minor gap is that the CV could be more explicit about the candidate's experience with Power BI, although it is mentioned as a skill.
-
-Improved CV: CURRICULUM VITAE Jordan Mills jordan.mills@email.com | LinkedIn: linkedin.com/in/jordanmills | New York, NY
-
-Summary Data analyst with 5 years of experience turning large, complex datasets into clear business insights. Proven track record in financial services, with deep expertise in SQL, Python, and BI tools. Comfortable presenting to both technical and non-technical audiences.
-
-Experience Data Analyst → Senior Data Analyst — Meridian Financial, New York, NY (2020–Present)
-
-    Built and maintained 15+ Tableau dashboards used daily by C-suite stakeholders
-    Wrote optimized SQL queries against multi-billion row datasets, reducing report runtime by 40%
-    Led a 6-month A/B testing program on customer onboarding flows, improving conversion by 18%
-    Mentored 2 junior analysts and established a team SQL style guide
-    Collaborated with data engineering to redesign 3 ETL pipelines in dbt
-
-Data Analyst — BrightMetrics, Jersey City, NJ (2019–2020)
-
-    Supported marketing and product teams with ad hoc analysis using Python (pandas, numpy)
-    Created automated weekly reports, saving ~6 hours of manual work per week
-    Utilized Power BI to create interactive dashboards for business stakeholders
-
-Skills SQL (PostgreSQL, BigQuery), Python (pandas, numpy, matplotlib), Tableau, Power BI, dbt, Git, Excel, A/B Testing, Stakeholder Communication
-
-Education B.S. Statistics — Rutgers University, 2019
-
-Certifications Tableau Desktop Specialist (2022) Google Data Analytics Certificate (2021)
-
----
-## Cover Letter
-
-Dear Hiring Manager,
-
-As a seasoned data analyst with a strong background in financial services, I am excited to apply for the Senior Data Analyst position at FinEdge Analytics. With 5 years of experience in turning complex datasets into clear business insights, I am confident in my ability to drive actionable recommendations for business stakeholders. My expertise in SQL, Python, and BI tools such as Tableau and Power BI aligns well with the job requirements. I have a proven track record of designing and maintaining dashboards, writing optimized SQL queries, and collaborating with data engineers to improve pipeline efficiency.
-
-I am particularly drawn to this role because of the opportunity to work closely with business stakeholders and lead A/B testing initiatives, presenting findings to leadership. My experience in mentoring junior analysts and establishing best practices will also enable me to make a positive impact on the team. I am excited about the prospect of joining FinEdge Analytics and contributing my skills and experience to drive business growth. I look forward to discussing my application and how I can contribute to the company's success.
-
-Sincerely, Jordan Mills
-Skill Gap Analysis
-
----
-## Identified Skill Gaps:
-
-    No direct experience with cloud-based data platforms or big data technologies beyond SQL and dbt is mentioned, which might be expected in a senior data analyst role, especially in a fintech company.
-    No explicit experience with data storytelling or presenting complex data insights to non-technical stakeholders is highlighted, although there is mention of presenting to both technical and non-technical audiences.
-    The CV does not explicitly mention experience with machine learning, statistical modeling, or advanced analytics techniques that are often expected in senior data analyst roles.
-    No experience with Agile methodologies or version control systems beyond Git is mentioned, which could be beneficial in a collaborative data team environment.
-
-Actionable Advice:
-
-    Consider taking courses or gaining experience with cloud-based data platforms such as AWS, GCP, or Azure to enhance your skill set and stay competitive in the market.
-    Develop a portfolio of examples that demonstrate your ability to present complex data insights to non-technical stakeholders, such as writing blog posts or creating visual presentations.
-    Pursue additional training or certifications in machine learning, statistical modeling, or advanced analytics techniques to enhance your analytical skills and stay up-to-date with industry trends.
-    Highlight any experience with Agile methodologies or version control systems beyond Git, and consider gaining experience with tools like Jira, Asana, or GitHub to improve collaboration and project management skills.
+This project is intended for educational, research, and portfolio purposes.
